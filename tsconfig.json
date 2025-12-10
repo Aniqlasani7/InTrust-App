@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext"],
+    "jsx": "react-native",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+
+    "moduleResolution": "node",
+    "allowJs": true,
+    "resolveJsonModule": true,
+
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@screens/*": ["screens/*"],
+      "@utils/*": ["utils/*"],
+      "@context/*": ["context/*"],
+      "@styles/*": ["styles/*"],
+      "@navigation/*": ["navigation/*"]
+    },
+
+    "types": ["react", "react-native", "jest"]
+  },
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
