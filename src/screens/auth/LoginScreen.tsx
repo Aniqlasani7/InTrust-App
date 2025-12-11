@@ -1,67 +1,77 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { colors } from '../../styles/colors';
+import { theme } from '../../styles/theme';
 
-const LoginScreen = () => {
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const navigation = useNavigation();
+const LoginScreen: React.FC = () => {
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const navigation = useNavigation<any>(); // 👈 fixes the "never" error
 
-    const handleLogin = () => {
-        // Logic for handling login with OTP
-        navigation.navigate('Home'); // Navigate to Home screen after login
-    };
+  const handleLogin = () => {
+    navigation.navigate('Home');
+  };
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Login</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Phone Number"
-                placeholderTextColor={colors.gray}
-                value={phoneNumber}
-                onChangeText={setPhoneNumber}
-                keyboardType="phone-pad"
-            />
-            <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                <Text style={styles.buttonText}>Send OTP</Text>
-            </TouchableOpacity>
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Login</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Phone Number"
+        placeholderTextColor={theme.colors.disabled}
+        value={phoneNumber}
+        onChangeText={setPhoneNumber}
+        keyboardType="phone-pad"
+      />
+
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Send OTP</Text>
+      </TouchableOpacity>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.black,
-        justifyContent: 'center',
-        padding: 20,
-    },
-    title: {
-        fontSize: 24,
-        color: colors.white,
-        marginBottom: 20,
-        textAlign: 'center',
-    },
-    input: {
-        height: 50,
-        borderColor: colors.gray,
-        borderWidth: 1,
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        color: colors.white,
-        marginBottom: 20,
-    },
-    button: {
-        backgroundColor: colors.primary,
-        paddingVertical: 15,
-        borderRadius: 5,
-    },
-    buttonText: {
-        color: colors.white,
-        textAlign: 'center',
-        fontSize: 16,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+    justifyContent: 'center',
+    padding: theme.spacing.medium,
+  },
+  title: {
+    fontSize: 24,
+    color: theme.colors.text,
+    marginBottom: theme.spacing.large,
+    textAlign: 'center',
+    fontFamily: theme.fonts.bold,
+  },
+  input: {
+    height: 50,
+    borderColor: theme.colors.disabled,
+    borderWidth: 1,
+    borderRadius: theme.borderRadius.medium,
+    paddingHorizontal: theme.spacing.small,
+    color: theme.colors.text,
+    marginBottom: theme.spacing.medium,
+    fontFamily: theme.fonts.regular,
+  },
+  button: {
+    backgroundColor: theme.colors.accent,
+    paddingVertical: theme.spacing.medium,
+    borderRadius: theme.borderRadius.medium,
+  },
+  buttonText: {
+    color: theme.colors.background,
+    textAlign: 'center',
+    fontSize: 16,
+    fontFamily: theme.fonts.medium,
+  },
 });
 
 export default LoginScreen;

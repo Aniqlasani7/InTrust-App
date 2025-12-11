@@ -1,53 +1,47 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { RatingBadge } from './RatingBadge';
+import { View, Text, StyleSheet } from 'react-native';
+import { theme } from '../../styles/theme';
 
-interface TradesmanCardProps {
+type TradesmanProps = {
   name: string;
-  image: string;
+  profession: string;
   rating: number;
-  services: string[];
-}
+};
 
-const TradesmanCard: React.FC<TradesmanCardProps> = ({ name, image, rating, services }) => {
+const TradesmanCard: React.FC<TradesmanProps> = ({ name, profession, rating }) => {
   return (
-    <View style={styles.card}>
-      <Image source={{ uri: image }} style={styles.image} />
-      <View style={styles.infoContainer}>
-        <Text style={styles.name}>{name}</Text>
-        <RatingBadge rating={rating} />
-        <Text style={styles.services}>{services.join(', ')}</Text>
-      </View>
+    <View style={styles.container}>
+      <Text style={styles.name}>{name}</Text>
+      <Text style={styles.profession}>{profession}</Text>
+      <Text style={styles.rating}>⭐ {rating.toFixed(1)}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#1E1E1E',
-    borderRadius: 10,
-    padding: 15,
-    marginVertical: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  image: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginRight: 15,
-  },
-  infoContainer: {
-    flex: 1,
+  container: {
+    backgroundColor: theme.colors.surface,
+    padding: theme.spacing.medium,
+    borderRadius: theme.borderRadius.medium,
+    marginVertical: theme.spacing.small,
+    ...theme.shadows.small,
   },
   name: {
-    color: '#FFFFFF',
+    color: theme.colors.text,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: theme.fonts.bold,
   },
-  services: {
-    color: '#B0B0B0',
+  profession: {
+    color: theme.colors.disabled,
     fontSize: 14,
+    fontFamily: theme.fonts.medium,
+    marginTop: 4,
+  },
+  rating: {
+    color: theme.colors.accent,
+    fontSize: 14,
+    fontFamily: theme.fonts.bold,
+    marginTop: 6,
   },
 });
 
