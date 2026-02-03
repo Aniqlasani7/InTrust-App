@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../styles/colors';
 
 const ProfileScreen = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
 
     return (
         <View style={styles.container}>
@@ -23,7 +23,7 @@ const ProfileScreen = () => {
             </View>
             <TouchableOpacity 
                 style={styles.editButton} 
-                onPress={() => navigation.navigate('EditProfileScreen')}
+                onPress={() => navigation.navigate('EditProfile')}
             >
                 <Text style={styles.editButtonText}>Edit Profile</Text>
             </TouchableOpacity>
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     label: {
         fontSize: 16,
-        color: colors.textSecondary,
+        color: colors.placeholder,
     },
     value: {
         fontSize: 18,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     editButtonText: {
-        color: colors.white,
+        color: colors.text,
         fontSize: 16,
     },
 });

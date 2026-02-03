@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { Button } from '../../components/common/Button';
+import Button from '../../components/common/Button';
 
 const OrderDetailScreen = () => {
-    const route = useRoute();
-    const { orderId } = route.params;
+    const route = useRoute<any>();
+    const { orderId } = route.params as { orderId: string };
 
     // Mock order data
     const orderDetails = {
@@ -35,7 +35,7 @@ const OrderDetailScreen = () => {
                 <Text style={styles.label}>Description:</Text>
                 <Text style={styles.value}>{orderDetails.description}</Text>
             </View>
-            <Button title="Contact Tradesman" onPress={() => { /* Handle contact tradesman */ }} />
+            <Button title="Contact Tradesman" onPress={() => console.log('Contact tradesman')} />
         </ScrollView>
     );
 };

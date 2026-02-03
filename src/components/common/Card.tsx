@@ -1,46 +1,40 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
+import { theme } from '../../styles/theme';
 
-interface CardProps {
+export type CardProps = {
   title: string;
-  description: string;
-  children?: React.ReactNode;
-}
+  onPress?: () => void;
+};
 
-const Card: React.FC<CardProps> = ({ title, description, children }) => {
+const Card: React.FC<CardProps> = ({ title, onPress }) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={onPress}
+      style={styles.card}
+    >
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
-      {children}
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#1E1E1E',
-    borderRadius: 8,
-    padding: 16,
-    marginVertical: 8,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
+    backgroundColor: theme.colors.card ?? theme.colors.surface,
+    padding: theme.spacing.medium,
+    borderRadius: theme.borderRadius.medium,
+    marginBottom: theme.spacing.medium,
   },
   title: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  description: {
-    color: '#B0B0B0',
-    fontSize: 14,
-    marginVertical: 4,
+    fontSize: 16,
+    color: theme.colors.text,
+    fontFamily: theme.fonts.medium,
   },
 });
 

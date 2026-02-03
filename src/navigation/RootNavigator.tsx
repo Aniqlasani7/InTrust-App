@@ -1,6 +1,28 @@
+// 👇 EXPORT THIS
+export type RootStackParamList = {
+  Onboarding: undefined;
+  Login: undefined;
+  Signup: undefined;
+  Home: undefined;
+  Search: undefined;
+  TradesmenList: { id: string };
+  TradesmanDetail: { id: string };
+  Category: undefined;
+  Booking: undefined;
+  BookingConfirmation: undefined;
+  PaymentScreen: undefined;
+  Messages: undefined;
+  Chat: { id: string };
+  Profile: undefined;
+  EditProfile: undefined;
+  Orders: undefined;
+  OrderDetail: { id: string };
+};
+
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import LoginScreen from '../screens/auth/LoginScreen';
 import SignupScreen from '../screens/auth/SignupScreen';
 import OnboardingScreen from '../screens/auth/OnboardingScreen';
@@ -18,9 +40,10 @@ import EditProfileScreen from '../screens/profile/EditProfileScreen';
 import OrdersScreen from '../screens/orders/OrdersScreen';
 import OrderDetailScreen from '../screens/orders/OrderDetailScreen';
 
-const Stack = createStackNavigator();
+// ✅ THIS IS THE IMPORTANT FIX
+const Stack = createStackNavigator<RootStackParamList>();
 
-const RootNavigator = () => {
+const RootNavigator: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -33,7 +56,10 @@ const RootNavigator = () => {
         <Stack.Screen name="TradesmanDetail" component={TradesmanDetailScreen} />
         <Stack.Screen name="Category" component={CategoryScreen} />
         <Stack.Screen name="Booking" component={BookingScreen} />
-        <Stack.Screen name="BookingConfirmation" component={BookingConfirmationScreen} />
+        <Stack.Screen
+          name="BookingConfirmation"
+          component={BookingConfirmationScreen}
+        />
         <Stack.Screen name="Messages" component={MessagesScreen} />
         <Stack.Screen name="Chat" component={ChatScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />

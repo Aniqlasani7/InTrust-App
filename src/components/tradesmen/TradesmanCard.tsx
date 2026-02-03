@@ -2,45 +2,47 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { theme } from '../../styles/theme';
 
-type TradesmanProps = {
+export type Tradesman = {
+  id: string;
   name: string;
-  profession: string;
+  service: string;
   rating: number;
 };
 
-const TradesmanCard: React.FC<TradesmanProps> = ({ name, profession, rating }) => {
+type TradesmanCardProps = {
+  tradesman: Tradesman;
+};
+
+const TradesmanCard: React.FC<TradesmanCardProps> = ({ tradesman }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.name}>{name}</Text>
-      <Text style={styles.profession}>{profession}</Text>
-      <Text style={styles.rating}>⭐ {rating.toFixed(1)}</Text>
+    <View style={styles.card}>
+      <Text style={styles.name}>{tradesman.name}</Text>
+      <Text style={styles.service}>{tradesman.service}</Text>
+      <Text style={styles.rating}>⭐ {tradesman.rating}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme.colors.surface,
+  card: {
+    backgroundColor: theme.colors.card,
     padding: theme.spacing.medium,
     borderRadius: theme.borderRadius.medium,
-    marginVertical: theme.spacing.small,
-    ...theme.shadows.small,
+    marginBottom: theme.spacing.medium,
   },
   name: {
-    color: theme.colors.text,
     fontSize: 18,
+    color: theme.colors.text,
     fontFamily: theme.fonts.bold,
   },
-  profession: {
-    color: theme.colors.disabled,
+  service: {
     fontSize: 14,
-    fontFamily: theme.fonts.medium,
+    color: theme.colors.disabled,
     marginTop: 4,
   },
   rating: {
-    color: theme.colors.accent,
     fontSize: 14,
-    fontFamily: theme.fonts.bold,
+    color: theme.colors.accent,
     marginTop: 6,
   },
 });

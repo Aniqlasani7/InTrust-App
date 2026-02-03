@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import Button from '../../components/common/Button';
 import { theme } from '../../styles/theme';
 
@@ -14,10 +14,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../../assets/onboarding-image.png')}
-        style={styles.image}
-      />
+      <View style={styles.image} />
       <Text style={styles.title}>Welcome to Intrust</Text>
       <Text style={styles.subtitle}>
         Connecting you with verified tradesmen.

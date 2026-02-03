@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../styles/colors';
-import { Button } from '../../components/common/Button';
+import Button from '../../components/common/Button';
 
 const EditProfileScreen = () => {
     const navigation = useNavigation();
@@ -24,21 +24,21 @@ const EditProfileScreen = () => {
                 placeholder="Name"
                 value={name}
                 onChangeText={setName}
-                placeholderTextColor={colors.gray}
+                placeholderTextColor={colors.placeholder}
             />
             <TextInput
                 style={styles.input}
                 placeholder="Email"
                 value={email}
                 onChangeText={setEmail}
-                placeholderTextColor={colors.gray}
+                placeholderTextColor={colors.placeholder}
             />
             <TextInput
                 style={styles.input}
                 placeholder="Phone"
                 value={phone}
                 onChangeText={setPhone}
-                placeholderTextColor={colors.gray}
+                placeholderTextColor={colors.placeholder}
                 keyboardType="phone-pad"
             />
             <Button title="Save Changes" onPress={handleSave} />
@@ -49,22 +49,22 @@ const EditProfileScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.black,
+        backgroundColor: colors.background,
         padding: 20,
     },
     title: {
         fontSize: 24,
-        color: colors.white,
+        color: colors.text,
         marginBottom: 20,
     },
     input: {
         height: 50,
-        borderColor: colors.gray,
+        borderColor: colors.border,
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
         marginBottom: 15,
-        color: colors.white,
+        color: colors.text,
     },
 });
 

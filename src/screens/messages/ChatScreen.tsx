@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
-const ChatScreen = ({ route }) => {
+type Message = {
+    text: string;
+    sender: 'user' | 'tradesman';
+};
+
+const ChatScreen = ({ route }: { route: any }) => {
     const { tradesmanId } = route.params;
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [newMessage, setNewMessage] = useState('');
+
+    const fetchMessagesFromAPI = async (tradesmanId: string): Promise<Message[]> => {
+        // Replace with actual API call
+        return [];
+    };
+
+    const sendMessageToAPI = async (tradesmanId: string, message: string) => {
+        // Replace with actual API call
+    };
 
     useEffect(() => {
         // Fetch messages from the server or local storage
@@ -27,7 +40,7 @@ const ChatScreen = ({ route }) => {
         }
     };
 
-    const renderMessage = ({ item }) => (
+    const renderMessage = ({ item }: { item: Message }) => (
         <View style={item.sender === 'user' ? styles.userMessage : styles.tradesmanMessage}>
             <Text style={styles.messageText}>{item.text}</Text>
         </View>
@@ -51,7 +64,7 @@ const ChatScreen = ({ route }) => {
                     placeholderTextColor="#888"
                 />
                 <TouchableOpacity onPress={handleSendMessage}>
-                    <Ionicons name="send" size={24} color="#fff" />
+                    <Text style={styles.sendButton}>Send</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -98,6 +111,12 @@ const styles = StyleSheet.create({
         padding: 10,
         color: '#fff',
         marginRight: 10,
+    },
+    sendButton: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 16,
+        paddingHorizontal: 12,
     },
 });
 

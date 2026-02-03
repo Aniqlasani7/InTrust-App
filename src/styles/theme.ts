@@ -2,6 +2,7 @@ export const theme = {
   colors: {
     background: '#121212',
     surface: '#1E1E1E',
+    card: '#1E1E1E',        // ✅ ADD THIS
     primary: '#BB86FC',
     accent: '#03DAC6',
     text: '#FFFFFF',
@@ -25,25 +26,18 @@ export const theme = {
   },
   shadows: {
     small: {
-      elevation: 2,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.2,
-      shadowRadius: 1.5,
-    },
-    medium: {
-      elevation: 4,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.3,
-      shadowRadius: 3.5,
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
     },
-    large: {
-      elevation: 8,
+    medium: {
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.4,
-      shadowRadius: 5,
+      shadowOpacity: 0.3,
+      shadowRadius: 4.65,
+      elevation: 8,
     },
   },
 };

@@ -1,30 +1,37 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
-interface BookingContextType {
-  bookingDetails: BookingDetails | null;
-  setBookingDetails: (details: BookingDetails | null) => void;
-}
+export type BookingData = {
+  service?: string;
+  date?: string;
+  address?: string;
+};
 
-interface BookingDetails {
-  service: string;
-  date: string;
-  address: string;
-}
+export type BookingContextType = {
+  bookingData: BookingData;
+  setBookingData: React.Dispatch<React.SetStateAction<BookingData>>;
+};
 
-const BookingContext = createContext<BookingContextType | undefined>(undefined);
+// ✅ EXPORT the context
+export const BookingContext = createContext<BookingContextType | undefined>(
+  undefined
+);
 
-export const BookingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [bookingDetails, setBookingDetails] = useState<BookingDetails | null>(null);
+// ✅ EXPORT the provider
+export const BookingProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [bookingData, setBookingData] = useState<BookingData>({});
 
   return (
-    <BookingContext.Provider value={{ bookingDetails, setBookingDetails }}>
+    <BookingContext.Provider value={{ bookingData, setBookingData }}>
       {children}
     </BookingContext.Provider>
   );
 };
 
-export const useBooking = () => {
-  const context = useContext(BookingContext);
+// ✅ EXPORT the hook
+export const useBooking = (): BookingContextType => {
+  const context = React.useContext(BookingContext);
   if (context === undefined) {
     throw new Error('useBooking must be used within a BookingProvider');
   }

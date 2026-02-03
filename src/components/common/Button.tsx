@@ -9,7 +9,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ title, onPress, disabled = false }) => {
-const { colors } = theme
+  const { colors } = theme;
 
   return (
     <TouchableOpacity

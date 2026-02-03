@@ -24,7 +24,7 @@ const ServiceSelector: React.FC<Props> = ({ onSelectService }) => {
     <TouchableOpacity
       style={styles.serviceItem}
       onPress={() => onSelectService?.(item)}  // safe call (no crash if undefined)
-    >
+    >   
       <Text style={styles.serviceText}>{item.name}</Text>
     </TouchableOpacity>
   );

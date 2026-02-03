@@ -1,28 +1,39 @@
 import React, { useState } from 'react';
-import { View, TextInput, FlatList, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  TextInput,
+  FlatList,
+  StyleSheet,
+  ListRenderItem,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Button } from '../../components/common/Button';
-import { TradesmanCard } from '../../components/tradesmen/TradesmanCard';
 
-const SearchScreen = () => {
+import TradesmanCard, {
+  Tradesman,
+} from '../../components/tradesmen/TradesmanCard';
+import { theme } from '../../styles/theme';
+
+const SearchScreen: React.FC = () => {
+  const navigation = useNavigation<any>();
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [tradesmen, setTradesmen] = useState([]);
-  const navigation = useNavigation();
+  const [tradesmen, setTradesmen] = useState<Tradesman[]>([]);
 
   const handleSearch = () => {
-    // Mock API call to fetch tradesmen based on search query
-    const fetchedTradesmen = [
-      { id: '1', name: 'John Doe', service: 'Plumber' },
-      { id: '2', name: 'Jane Smith', service: 'Electrician' },
-    ].filter(tradesman => tradesman.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    const fetchedTradesmen: Tradesman[] = [
+      { id: '1', name: 'John Doe', service: 'Plumber', rating: 4.5 },
+      { id: '2', name: 'Jane Smith', service: 'Electrician', rating: 4.8 },
+    ].filter((t) =>
+      t.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     setTradesmen(fetchedTradesmen);
   };
 
-  const renderTradesman = ({ item }) => (
+  const renderTradesman: ListRenderItem<Tradesman> = ({ item }) => (
     <TradesmanCard
       tradesman={item}
-      onPress={() => navigation.navigate('TradesmanDetail', { tradesmanId: item.id })}
+      /* card handles its own press later */
     />
   );
 
@@ -31,16 +42,18 @@ const SearchScreen = () => {
       <TextInput
         style={styles.searchInput}
         placeholder="Search for tradesmen..."
-        placeholderTextColor="#888"
+        placeholderTextColor={theme.colors.disabled}
         value={searchQuery}
         onChangeText={setSearchQuery}
         onSubmitEditing={handleSearch}
       />
+
       <FlatList
         data={tradesmen}
         renderItem={renderTradesman}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
@@ -49,19 +62,20 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
-    padding: 16,
+    backgroundColor: theme.colors.background,
+    padding: theme.spacing.medium,
   },
   searchInput: {
-    height: 50,
-    borderColor: '#444',
+    height: 48,
+    borderColor: theme.colors.disabled,
     borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    color: '#fff',
+    borderRadius: theme.borderRadius.medium,
+    paddingHorizontal: theme.spacing.small,
+    color: theme.colors.text,
+    fontFamily: theme.fonts.regular,
   },
   list: {
-    paddingTop: 16,
+    paddingTop: theme.spacing.medium,
   },
 });
 

@@ -1,30 +1,49 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
-    "lib": ["esnext"],
+    "module": "Node16",
+    "lib": [
+      "esnext"
+    ],
     "jsx": "react-native",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "allowJs": true,
     "resolveJsonModule": true,
-
     "baseUrl": "./src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@screens/*": ["screens/*"],
-      "@utils/*": ["utils/*"],
-      "@context/*": ["context/*"],
-      "@styles/*": ["styles/*"],
-      "@navigation/*": ["navigation/*"]
+      "@components/*": [
+        "components/*"
+      ],
+      "@screens/*": [
+        "screens/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@context/*": [
+        "context/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@navigation/*": [
+        "navigation/*"
+      ]
     },
-
-    "types": ["react", "react-native", "jest"]
+    "types": [
+      "react",
+      "react-native",
+      "jest"
+    ]
   },
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+  "extends": "expo/tsconfig.base"
 }

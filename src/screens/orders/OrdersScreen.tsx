@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { getOrders } from '../../utils/api';
-import OrderCard from '../../components/common/Card';
+import Card from '../../components/common/Card';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 
+type Order = {
+    id: number;
+    title: string;
+};
+
 const OrdersScreen = () => {
-    const [orders, setOrders] = useState([]);
+    const [orders, setOrders] = useState<Order[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -23,8 +28,8 @@ const OrdersScreen = () => {
         fetchOrders();
     }, []);
 
-    const renderOrder = ({ item }) => (
-        <OrderCard order={item} />
+    const renderOrder = ({ item }: { item: Order }) => (
+        <Card title={item.title} />
     );
 
     if (loading) {

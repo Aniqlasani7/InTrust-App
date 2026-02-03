@@ -11,7 +11,7 @@ const TradesmenListScreen = () => {
     useEffect(() => {
         const loadTradesmen = async () => {
             try {
-                const data = await fetchTradesmen();
+                const data = await fetchTradesmen('');
                 setTradesmen(data);
             } catch (error) {
                 console.error("Error fetching tradesmen:", error);
@@ -23,7 +23,7 @@ const TradesmenListScreen = () => {
         loadTradesmen();
     }, []);
 
-    const renderItem = ({ item }) => (
+    const renderItem = ({ item }: { item: any }) => (
         <TradesmanCard tradesman={item} />
     );
 

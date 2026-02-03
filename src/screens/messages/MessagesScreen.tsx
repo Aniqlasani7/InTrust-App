@@ -1,16 +1,29 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { useMessages } from '../../context/MessagesContext';
-import MessageCard from '../../components/common/Card';
+import Card from '../../components/common/Card';
+
+type Message = {
+  id: string;
+  content: string;
+  timestamp: string;
+};
+
+type MessagesContextType = {
+  messages: Message[];
+};
+
+const useMessages = (): MessagesContextType => {
+  // Placeholder implementation
+  return { messages: [] };
+};
 
 const MessagesScreen = () => {
     const { messages } = useMessages();
 
-    const renderMessage = ({ item }) => (
-        <MessageCard>
-            <Text style={styles.messageText}>{item.content}</Text>
+    const renderMessage = ({ item }: { item: Message }) => (
+        <Card title={item.content}>
             <Text style={styles.timestamp}>{item.timestamp}</Text>
-        </MessageCard>
+        </Card>
     );
 
     return (
@@ -39,9 +52,6 @@ const styles = StyleSheet.create({
     },
     list: {
         paddingBottom: 16,
-    },
-    messageText: {
-        color: '#ffffff',
     },
     timestamp: {
         color: '#b0b0b0',
